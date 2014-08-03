@@ -2,7 +2,19 @@
 
 A PHP class for loading Netpbm images.
 
-## resource NetpbmReader::createGdImage(string imageData)
+## Example
+```
+$image = NetpbmReader::createGdImage(file_get_contents('circle.ascii.pbm'));
+
+header('Content-type: image/png');
+imagePNG($image);
+
+imageDestroy($image);
+```
+
+## API
+
+### resource NetpbmReader::createGdImage(string imageData)
 Creates a Gd image resource from string that contains Netpbm data. Throws a \RuntimeException if something goes wrong.
 
 You can make a wrapper for this method if you want to have a function that is similar to built-in `imageCreateFromPNG`, -`GIF`, or -`JPEG`:
@@ -18,16 +30,6 @@ function imageCreateFromNetpbm($filename) {
 		return false;
 	}
 }
-```
-
-## Example
-```
-$image = NetpbmReader::createGdImage(file_get_contents('circle.ascii.pbm'));
-
-header('Content-type: image/png');
-imagePNG($image);
-
-imageDestroy($image);
 ```
 
 ## License
